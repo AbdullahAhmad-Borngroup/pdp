@@ -37,10 +37,17 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/cs3/': { target: 'https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/', pathRewrite: {'^/cs3/': ''}, changeOrigin: true }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

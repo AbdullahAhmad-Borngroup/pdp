@@ -10,25 +10,27 @@
       <div class="offer-header-container">
         <div class="offer-name"><span> Frühlings-Highlight</span></div>
         <div class="offer-title">
-          <span>Blau Allnet L Flex</span>
-          <span class="special"> mit</span>
-          <span> 7 GB LTE</span>
+          <span>{{ offer.Name }}</span>
+          <!-- <span class="special"> mit</span>
+          <span> 7 GB LTE</span> -->
         </div>
         <div class="offer-header-details">
           <div class="offer-header-detail">
             <span class="check-icon"
               ><tef-icon cloak icon="check" size="l"></tef-icon>
             </span>
-            <span class="offer-header-detail-text">7 GB LTE</span>
+            <span class="offer-header-detail-text">{{
+              offer.Product_name_suffix
+            }}</span>
             <span class="offer-header-detail-more-info"></span>
           </div>
           <div class="offer-header-detail">
             <span class="check-icon"
               ><tef-icon cloak icon="check" size="l"></tef-icon>
             </span>
-            <span class="offer-header-detail-text"
-              >Allnet Flat in alle dt. Netze</span
-            >
+            <span class="offer-header-detail-text">{{
+              offer.Product_name_prefix
+            }}</span>
             <span class="offer-header-detail-more-info">
               <tef-icon cloak icon="info" size="m"></tef-icon>
             </span>
@@ -37,7 +39,9 @@
             <span class="check-icon"
               ><tef-icon cloak icon="check" size="l"></tef-icon>
             </span>
-            <span class="offer-header-detail-text">Monatlich kündbar</span>
+            <span class="offer-header-detail-text">{{
+              offer.Allowance_Duration
+            }}</span>
             <span class="offer-header-detail-more-info">
               <tef-icon cloak icon="info" size="m"></tef-icon>
             </span>
@@ -46,7 +50,9 @@
             <span class="check-icon"
               ><tef-icon cloak icon="check" size="l"></tef-icon>
             </span>
-            <span class="offer-header-detail-text">EU-Roaming inklusive</span>
+            <span class="offer-header-detail-text">{{
+              offer.Data_Allowance
+            }}</span>
             <span class="offer-header-detail-more-info">
               <tef-icon cloak icon="info" size="m"></tef-icon>
             </span>
@@ -63,14 +69,16 @@
         </div>
         <div class="offer-config-wrapper">
           <div class="offer-data-size-title">LTE data volume</div>
-          <div class="offer-data-size btn active">7 GB</div>
+          <div class="offer-data-size btn active">
+            {{ offer.Data_Allowance }}
+          </div>
           <div class="offer-config-desc">
             <span>Laufzeit</span
             ><span class="special">2 € monatlich sparen</span>
           </div>
           <div class="offer-config-term-wrapper">
             <div class="offer-config-term-option btn active special">
-              24 Monate Laufzeit
+              {{ offer.Allowance_Duration }}
             </div>
             <div class="offer-config-term-option btn">Jederzeit kündbar</div>
           </div>
@@ -81,8 +89,12 @@
         <div class="offer-price-wrapper">
           <div class="offer-price-options">
             <div class="offer-price-option">
-              <div class="offer-price-option-title">Mtl. / 24 Monate i</div>
-              <div class="offer-price-option-value">9,99 €</div>
+              <div class="offer-price-option-title">
+                Mtl. / {{ offer.Allowance_Duration }}
+              </div>
+              <div class="offer-price-option-value">
+                {{ offer.Marketing_Price }}
+              </div>
             </div>
             <div class="offer-price-option">
               <div class="offer-price-option-title">Einmalig</div>
@@ -112,19 +124,91 @@
 </template>
 
 <script>
+// import axios from 'axios'
 const DEFAULT_BRAND = '2'
-
 export default {
+  asyncData({ $axios, route }) {
+    // console.log(app.params)
+    // const API_PATH = `https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/cs3/api/entities(${route.query.productuuid})?id=GUID&XsltCode=TEF_OFFER_MARKETING`
+    const DUMMY_RESULT = [
+      {
+        Name: 'O2 my prepaid L',
+        ID: '221f727e-91a7-47ae-b5cf-7c0191fbd1e4',
+        Business_ID: '000024',
+        Marketing_Price: '19.99',
+        Marketing_Recurring_Price: '19.99',
+        Marketing_Description:
+          'Mobile life is fun with the O2 my Prepaid L Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 12 GB and LTE Max. Without a contract term.',
+        Marketing_short_description:
+          '12GB LTE Max data | Allnet-Flat on all German networks | EU Roaming included | 25 € cash-back if you take your number with you',
+        Contract: 'false',
+        Product_name_suffix: 'L',
+        Product_name_prefix: 'O2 My Prepaid',
+        Allowance_Duration: '4 weeks',
+        Data_Allowance: '12GB',
+      },
+      {
+        Name: 'Blau Spike Test Offer',
+        ID: '2a7fae80-f9e0-4b26-baed-faf6d9f575cc',
+        Business_ID: '000039',
+        Marketing_Price: '19.99',
+        Marketing_Recurring_Price: '19.99',
+        Marketing_Description:
+          'Mobile life is fun with the O2 my Prepaid L Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 12 GB and LTE Max. Without a contract term.',
+        Marketing_short_description: 'SPIKE Offer to test',
+        Contract: 'false',
+        Product_name_suffix: 'Spike',
+        Product_name_prefix: 'Blau',
+        Allowance_Duration: '4 weeks',
+        Data_Allowance: '12GB',
+      },
+      {
+        Name: 'O2 my prepaid M',
+        ID: '403df60f-c776-4e5f-b6ea-6333217cd2e4',
+        Business_ID: '000025',
+        Marketing_Price: '14.99',
+        Marketing_Recurring_Price: '14.99',
+        Marketing_Description:
+          'Mobile life is fun with the O2 my Prepaid M Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 6.5 GB and LTE Max. Without a contract term.',
+        Marketing_short_description:
+          '6.5GB LTE Max data | Allnet-Flat on all German networks | EU Roaming included | 25 € cash-back if you take your number with you',
+        Contract: 'false',
+        Product_name_suffix: 'M',
+        Product_name_prefix: 'O2 My Prepaid',
+        Allowance_Duration: '4 weeks',
+        Data_Allowance: '6.5GB',
+      },
+      {
+        Name: 'O2 my prepaid S',
+        ID: 'eb15bb49-378c-4e6a-8b95-2f706c16e74d',
+        Business_ID: '000020',
+        Marketing_Price: '9.99',
+        Marketing_Recurring_Price: '9.99',
+        Marketing_Description:
+          'Mobile life is fun with the O2 my Prepaid S Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 3.5 GB and LTE Max. Without a contract term.',
+        Marketing_short_description:
+          '3.5GB LTE Max data | Allnet-Flat on all German networks | EU Roaming included | 25 € cash-back if you take your number with you',
+        Contract: 'false',
+        Product_name_suffix: 'S',
+        Product_name_prefix: 'O2 My Prepaid',
+        Allowance_Duration: '4 weeks',
+        Data_Allowance: '3.5GB',
+      },
+    ]
+    // const result = await $axios.get(`${API_PATH}`)
+    const offer = DUMMY_RESULT.find((el) => el.ID === route.query.productuuid)
+
+    return {
+      offer,
+    }
+  },
   data() {
     return {
       model: {},
+      offer: {},
+      uuid: {},
     }
   },
-  /* async fetch() {
-    this.mountains = await fetch(
-      'https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/cs3/api/entities(221f727e-91a7-47ae-b5cf-7c0191fbd1e4)?id=GUID&XsltCode=TEF_OFFER_MARKETING'
-    ).then((res) => (this.sss = res.text()))
-  }, */
   computed: {
     // eslint-disable-next-line object-shorthand
     brandCssLink() {
@@ -138,6 +222,22 @@ export default {
     },
     brandId() {
       return this.$route.query.brandId || DEFAULT_BRAND
+    },
+    productId() {
+      return this.$route.query.productuuid
+    },
+  },
+  watch: {
+    '$route.query': '$fetch',
+  },
+  /* mounted() {
+    return {
+      route: this.$route.params,
+    }
+  }, */
+  methods: {
+    publishMessage() {
+      // console.log('mmm')
     },
   },
 }
