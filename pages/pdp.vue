@@ -106,7 +106,9 @@
             </div>
           </div>
           <div class="add-to-cart-wrapper">
-            <button @click="publishMessage">Add to basket</button>
+            <button @click="publishMessage">
+              Add to basket ({{ counter }})
+            </button>
           </div>
         </div>
       </div>
@@ -127,8 +129,8 @@
 </template>
 
 <script>
-import PubSub from 'pubsub-js'
 import { ADD_TO_BASKET } from '@/constants/'
+let PubSub
 const DEFAULT_BRAND = '2'
 
 export default {
@@ -211,9 +213,7 @@ export default {
   },
   data() {
     return {
-      model: {},
-      offer: {},
-      uuid: {},
+      counter: 0,
     }
   },
   computed: {
@@ -234,19 +234,14 @@ export default {
       return this.$route.query.productuuid
     },
   },
-  // watch: {
-  //   '$route.query': '$fetch',
-  // },
-  /* mounted() {
-    return {
-      route: this.$route.params,
-    }
-  }, */
+  mounted() {
+    PubSub = window.PubSub || require('pubsub-js')
+  },
   methods: {
     publishMessage() {
-      console.log('Message sent from PDP')
-      this.counter++
+      console.log('Message sent from PDP: ' + this.counter)
       PubSub.publish(ADD_TO_BASKET, this.counter)
+      this.counter++
     },
   },
 }
