@@ -7,6 +7,19 @@ export default {
       ignoredElements: ['tef-icon'],
     },
   },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/pdp.vue')
+      })
+    }
+  },
+  globals : {
+    id: globalName => "_idPdpNuxtJs"
+   },
+
   server: {
     port: 9000 // default: 3000
   },
