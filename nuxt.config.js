@@ -1,6 +1,6 @@
 export default {
   build: {
-    // publicPath: 'http://localhost:1010/static/f3',
+    publicPath: '/pdpNuxtJs/_nuxt/',
   },
   vue: {
     config: {
@@ -12,16 +12,16 @@ export default {
       routes.push({
         name: 'custom',
         path: '*',
-        component: resolve(__dirname, 'pages/pdp.vue')
+        component: resolve(__dirname, 'pages/pdp.vue'),
       })
-    }
+    },
   },
-  globals : {
-    id: globalName => "_idPdpNuxtJs"
-   },
+  globals: {
+    id: (globalName) => '_idPdpNuxtJs',
+  },
 
   server: {
-    port: 9000 // default: 3000
+    port: 9000, // default: 3000
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -56,17 +56,18 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    proxy: true
-  },
-
-  proxy: {
-    '/cs3/': { target: 'https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/', pathRewrite: {'^/cs3/': ''}, changeOrigin: true }
-  },
+  axios: {},
+  /*   proxy: {
+      '/api/v1': {
+        target: 'https://publish-p33452-e117502.adobeaemcloud.com/content/telefonicagermanygmbhprogram/us/en/offers/jcr:content/root/container/container',
+        pathRewrite: { '^/api/v1': '' },
+        changeOrigin: true,
+      },
+    }, */
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
 }

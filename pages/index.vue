@@ -1,5 +1,5 @@
 <template>
-  <div class="offer-wrapper">
+  <div id="appPdpNuxtJs" class="offer-wrapper">
     <link
       v-if="brandCssLink"
       rel="stylesheet"
