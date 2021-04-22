@@ -8,7 +8,9 @@
     />
     <div class="offer">
       <div class="offer-header-container">
-        <div class="offer-name"><span> Frühlings-Highlight</span></div>
+        <div class="offer-name">
+          <span> {{ offer.Name }}</span>
+        </div>
         <div class="offer-title">
           <span>{{ offer.Name }}</span>
           <!-- <span class="special"> mit</span>
@@ -83,6 +85,7 @@
             <div class="offer-config-term-option btn">Jederzeit kündbar</div>
           </div>
           <div class="offer-details-file">
+            <span><tef-icon cloak icon="pdf" size="m"></tef-icon></span>
             <span>Produktinformationsblatt</span>
           </div>
         </div>
@@ -114,7 +117,7 @@
           <div>For just € 4 more, save a full 12 GB now.</div>
         </div>
         <div class="offer-footer-action">
-          <button>Back up more GB</button>
+          <button @click="publishMessage">Back up more GB</button>
         </div>
       </div>
     </div>
@@ -240,6 +243,11 @@ export default {
       // console.log('mmm')
     },
   },
+  methods: {
+    publishMessage() {
+      console.log('mmm')
+    },
+  },
 }
 </script>
 
@@ -295,6 +303,7 @@ export default {
         .offer-data-size {
           min-width: 112px;
           width: 112px;
+          margin: 10px 0px 20px;
         }
         .offer-config-desc {
           margin-top: 15px;
@@ -314,6 +323,9 @@ export default {
               border: 3px solid var(--color-brand--brand-3);
             }
           }
+        }
+        .offer-details-file {
+          margin-top: 25px;
         }
       }
       .offer-price-wrapper {

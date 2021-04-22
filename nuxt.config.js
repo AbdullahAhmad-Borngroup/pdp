@@ -1,8 +1,27 @@
 export default {
+  build: {
+    // publicPath: 'http://localhost:1010/static/f3',
+  },
   vue: {
     config: {
       ignoredElements: ['tef-icon'],
     },
+  },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/pdp.vue')
+      })
+    }
+  },
+  globals : {
+    id: globalName => "_idPdpNuxtJs"
+   },
+
+  server: {
+    port: 9000 // default: 3000
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -50,5 +69,4 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
 }
