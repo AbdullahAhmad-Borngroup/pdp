@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="add-to-cart-wrapper">
-            <button>To the basket of gooods</button>
+            <button @click="publishMessage">Add to basket</button>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
           <div>For just € 4 more, save a full 12 GB now.</div>
         </div>
         <div class="offer-footer-action">
-          <button @click="publishMessage">Back up more GB</button>
+          <button>Back up more GB</button>
         </div>
       </div>
     </div>
@@ -127,8 +127,10 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import PubSub from 'pubsub-js'
+import { ADD_TO_BASKET } from '@/constants/'
 const DEFAULT_BRAND = '2'
+
 export default {
   asyncData({ $axios, route }) {
     // console.log(app.params)
@@ -199,7 +201,9 @@ export default {
       },
     ]
     // const result = await $axios.get(`${API_PATH}`)
-    const offer = DUMMY_RESULT.find((el) => el.ID === route.query.productuuid)
+    const offer =
+      DUMMY_RESULT.find((el) => el.ID === route.query.productuuid) ||
+      DUMMY_RESULT[0]
 
     return {
       offer,
@@ -230,9 +234,9 @@ export default {
       return this.$route.query.productuuid
     },
   },
-  watch: {
-    '$route.query': '$fetch',
-  },
+  // watch: {
+  //   '$route.query': '$fetch',
+  // },
   /* mounted() {
     return {
       route: this.$route.params,
@@ -240,12 +244,9 @@ export default {
   }, */
   methods: {
     publishMessage() {
-      // console.log('mmm')
-    },
-  },
-  methods: {
-    publishMessage() {
-      console.log('mmm')
+      console.log('Message sent from PDP')
+      this.counter++
+      PubSub.publish(ADD_TO_BASKET, this.counter)
     },
   },
 }
@@ -332,8 +333,6 @@ export default {
         flex: 1;
         margin-left: 20px;
       }
-    }
-    .offer-footer-container {
     }
   }
   .btn {

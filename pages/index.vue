@@ -237,8 +237,6 @@ export default {
         margin-left: 20px;
       }
     }
-    .offer-footer-container {
-    }
   }
   .btn {
     color: var(--color-darkmode--text);
