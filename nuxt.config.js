@@ -1,8 +1,14 @@
 export default {
+  build: {
+    // publicPath: 'http://localhost:1010/static/f3',
+  },
   vue: {
     config: {
       ignoredElements: ['tef-icon'],
     },
+  },
+  server: {
+    port: 9000 // default: 3000
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,11 +43,19 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+  },
+  /*   proxy: {
+      '/api/v1': {
+        target: 'https://publish-p33452-e117502.adobeaemcloud.com/content/telefonicagermanygmbhprogram/us/en/offers/jcr:content/root/container/container',
+        pathRewrite: { '^/api/v1': '' },
+        changeOrigin: true,
+      },
+    }, */
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
 }

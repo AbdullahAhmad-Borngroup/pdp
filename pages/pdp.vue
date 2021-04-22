@@ -8,7 +8,9 @@
     />
     <div class="offer">
       <div class="offer-header-container">
-        <div class="offer-name"><span> Frühlings-Highlight</span></div>
+        <div class="offer-name">
+          <span> {{ offer.Name }}</span>
+        </div>
         <div class="offer-title">
           <span>Blau Allnet L Flex</span>
           <span class="special"> mit</span>
@@ -75,6 +77,7 @@
             <div class="offer-config-term-option btn">Jederzeit kündbar</div>
           </div>
           <div class="offer-details-file">
+            <span><tef-icon cloak icon="pdf" size="m"></tef-icon></span>
             <span>Produktinformationsblatt</span>
           </div>
         </div>
@@ -102,7 +105,7 @@
           <div>For just € 4 more, save a full 12 GB now.</div>
         </div>
         <div class="offer-footer-action">
-          <button>Back up more GB</button>
+          <button @click="publishMessage">Back up more GB</button>
         </div>
       </div>
     </div>
@@ -113,18 +116,23 @@
 
 <script>
 const DEFAULT_BRAND = '2'
-
 export default {
+  async asyncData({ $axios }) {
+    const API_PATH =
+      'https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/cs3/api/entities(221f727e-91a7-47ae-b5cf-7c0191fbd1e4)?id=GUID&XsltCode=TEF_OFFER_MARKETING'
+
+    const result = await $axios.get(`${API_PATH}`)
+    return {
+      offer: result.data.Results.Offer,
+    }
+  },
   data() {
     return {
       model: {},
+      offer: {},
     }
   },
-  /* async fetch() {
-    this.mountains = await fetch(
-      'https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/cs3/api/entities(221f727e-91a7-47ae-b5cf-7c0191fbd1e4)?id=GUID&XsltCode=TEF_OFFER_MARKETING'
-    ).then((res) => (this.sss = res.text()))
-  }, */
+
   computed: {
     // eslint-disable-next-line object-shorthand
     brandCssLink() {
@@ -138,6 +146,11 @@ export default {
     },
     brandId() {
       return this.$route.query.brandId || DEFAULT_BRAND
+    },
+  },
+  methods: {
+    publishMessage() {
+      console.log('mmm')
     },
   },
 }
@@ -195,6 +208,7 @@ export default {
         .offer-data-size {
           min-width: 112px;
           width: 112px;
+          margin: 10px 0px 20px;
         }
         .offer-config-desc {
           margin-top: 15px;
@@ -214,6 +228,9 @@ export default {
               border: 3px solid var(--color-brand--brand-3);
             }
           }
+        }
+        .offer-details-file {
+          margin-top: 25px;
         }
       }
       .offer-price-wrapper {
