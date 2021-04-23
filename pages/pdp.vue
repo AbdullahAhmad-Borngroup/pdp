@@ -239,9 +239,9 @@ export default {
   },
   methods: {
     publishMessage() {
+      this.counter++
       console.log('Message sent from PDP: ' + this.counter)
       PubSub.publish(ADD_TO_BASKET, this.counter)
-      this.counter++
     },
   },
 }
