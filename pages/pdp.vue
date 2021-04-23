@@ -64,7 +64,7 @@
       <div class="offer-details-container">
         <div class="offer-image-wrapper">
           <img
-            src="https://static2-blau.o9.de/resource/blob/717748/9805887c385dca0d3e41d64dd8fc0bce/tariff-70008100-privatkunden-1209flexon-bild-data.png"
+            :src="offer.Offer_Image_URL"
             alt="Blau Allnet L Flex"
             title="Blau Allnet L Flex"
           />
@@ -139,11 +139,11 @@ export default {
     // const API_PATH = `https://hansen-dev-catalogservices.low.tefde-aws-raitt01-test.aws.de.pri.o2.com/cs3/api/entities(${route.query.productuuid})?id=GUID&XsltCode=TEF_OFFER_MARKETING`
     const DUMMY_RESULT = [
       {
-        Name: 'O2 my prepaid L',
+        Name: 'Blau Allnet Plus',
         ID: '221f727e-91a7-47ae-b5cf-7c0191fbd1e4',
         Business_ID: '000024',
-        Marketing_Price: '19.99',
-        Marketing_Recurring_Price: '19.99',
+        Marketing_Price: '15.99',
+        Marketing_Recurring_Price: '15.99',
         Marketing_Description:
           'Mobile life is fun with the O2 my Prepaid L Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 12 GB and LTE Max. Without a contract term.',
         Marketing_short_description:
@@ -153,44 +153,52 @@ export default {
         Product_name_prefix: 'O2 My Prepaid',
         Allowance_Duration: '4 weeks',
         Data_Allowance: '12GB',
+        Offer_Image_URL:
+          'https://static2-blau.o9.de/resource/blob/759702/bf912e11e89a607d0daf5678345e1494/tariff-70008040-privatkunden-1212-bild-data.png',
       },
       {
-        Name: 'Blau Spike Test Offer',
-        ID: '2a7fae80-f9e0-4b26-baed-faf6d9f575cc',
-        Business_ID: '000039',
-        Marketing_Price: '19.99',
-        Marketing_Recurring_Price: '19.99',
+        Name: 'Blau Allnet XL',
+        ID: '403df60f-c776-4e5f-b6ea-6333217cd2e4',
+        Business_ID: '000025',
+        Marketing_Price: '11.99',
+        Marketing_Recurring_Price: '11.99',
         Marketing_Description:
           'Mobile life is fun with the O2 my Prepaid L Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 12 GB and LTE Max. Without a contract term.',
         Marketing_short_description: 'SPIKE Offer to test',
         Contract: 'false',
-        Product_name_suffix: 'Spike',
-        Product_name_prefix: 'Blau',
+        Product_name_suffix: 'M',
+        Product_name_prefix: 'O2 My Prepaid',
         Allowance_Duration: '4 weeks',
-        Data_Allowance: '12GB',
+        Data_Allowance: '9GB',
+        Offer_Image_URL:
+          'https://static2-blau.o9.de/resource/blob/836356/f3367e205b615c27ade6c99dcb6a5714/tariff-70008030-privatkunden-1210-bild-data.png',
       },
       {
-        Name: 'O2 my prepaid M',
-        ID: '403df60f-c776-4e5f-b6ea-6333217cd2e4',
-        Business_ID: '000025',
-        Marketing_Price: '14.99',
-        Marketing_Recurring_Price: '14.99',
+        Name: 'Blau Allnet L',
+        ID: '2a7fae80-f9e0-4b26-baed-faf6d9f575cc',
+        Business_ID: '000039',
+        Marketing_Price: '11.99',
+        Marketing_Recurring_Price: '11.99',
+
         Marketing_Description:
           'Mobile life is fun with the O2 my Prepaid M Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 6.5 GB and LTE Max. Without a contract term.',
         Marketing_short_description:
           '6.5GB LTE Max data | Allnet-Flat on all German networks | EU Roaming included | 25 € cash-back if you take your number with you',
         Contract: 'false',
-        Product_name_suffix: 'M',
-        Product_name_prefix: 'O2 My Prepaid',
+        Product_name_suffix: 'Spike',
+        Product_name_prefix: 'Blau',
         Allowance_Duration: '4 weeks',
-        Data_Allowance: '6.5GB',
+        Data_Allowance: '7GB',
+        Offer_Image_URL:
+          'https://static2-blau.o9.de/resource/blob/717748/9805887c385dca0d3e41d64dd8fc0bce/tariff-70008100-privatkunden-1209flexon-bild-data.png',
       },
+
       {
-        Name: 'O2 my prepaid S',
+        Name: 'Basic',
         ID: 'eb15bb49-378c-4e6a-8b95-2f706c16e74d',
         Business_ID: '000020',
-        Marketing_Price: '9.99',
-        Marketing_Recurring_Price: '9.99',
+        Marketing_Price: '8.99',
+        Marketing_Recurring_Price: '8.99',
         Marketing_Description:
           'Mobile life is fun with the O2 my Prepaid S Tariff. Thanks to Allnet Flat, you can make calls to all German networks as much as you want. And use the mobile internet with 3.5 GB and LTE Max. Without a contract term.',
         Marketing_short_description:
@@ -199,7 +207,9 @@ export default {
         Product_name_suffix: 'S',
         Product_name_prefix: 'O2 My Prepaid',
         Allowance_Duration: '4 weeks',
-        Data_Allowance: '3.5GB',
+        Data_Allowance: '3GB',
+        Offer_Image_URL:
+          'https://static2-blau.o9.de/resource/blob/772746/5626e66e4c9e8807844eecaf3332bedf/tariff-70008030-privatkunden-1209-bild-data.png',
       },
     ]
     // const result = await $axios.get(`${API_PATH}`)
