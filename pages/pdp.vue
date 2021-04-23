@@ -107,7 +107,7 @@
           </div>
           <div class="add-to-cart-wrapper">
             <button class="btn active" @click="publishMessage">
-              Add to basket ({{ counter }})
+              Add to basket
             </button>
           </div>
         </div>
@@ -245,12 +245,13 @@ export default {
     },
   },
   mounted() {
-    PubSub = window.PubSub || require('pubsub-js')
+    PubSub = window.PubSub || undefined
   },
   methods: {
     publishMessage() {
       this.counter++
       console.log('Message sent from PDP: ' + this.counter)
+      PubSub = PubSub || window.PubSub
       PubSub.publish(ADD_TO_BASKET, this.counter)
     },
   },
