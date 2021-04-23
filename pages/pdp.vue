@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="add-to-cart-wrapper">
-            <button @click="publishMessage">
+            <button class="btn active" @click="publishMessage">
               Add to basket ({{ counter }})
             </button>
           </div>
@@ -119,7 +119,7 @@
           <div>For just € 4 more, save a full 12 GB now.</div>
         </div>
         <div class="offer-footer-action">
-          <button>Back up more GB</button>
+          <button class="btn active">Back up more GB</button>
         </div>
       </div>
     </div>
@@ -327,6 +327,18 @@ export default {
       .offer-price-wrapper {
         flex: 1;
         margin-left: 20px;
+        .add-to-cart-wrapper {
+          button {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .offer-footer-container {
+      .offer-footer-action {
+        button {
+          cursor: pointer;
+        }
       }
     }
   }
