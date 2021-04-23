@@ -107,7 +107,7 @@
           </div>
           <div class="add-to-cart-wrapper">
             <button class="btn active" @click="publishMessage">
-              Add to basket ({{ counter }})
+              Add to basket
             </button>
           </div>
         </div>
